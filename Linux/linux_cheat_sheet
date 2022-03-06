@@ -1,0 +1,58 @@
+## disk information
+fdisk -l
+
+##make filesystem
+mkfs.ext3 <device name>
+
+##block information 
+lsblk
+
+##for partioning disk
+fdisk <device name>
+
+##volumes two tyoes physical and logical volumes
+pvcreate  <device name> <device name>
+pvdisplay 		   //describes physical volume
+pvscan     		   //shows number of physical volumes
+
+##volumes group
+vgcreate <name> <device name> <device name> // it creates volume group
+vgdisplay <name> 
+
+
+##logical volume
+lvcreate -L 2GB -n app1 vg0 //logical volume in volume group vg0 with 2gb 
+lvscan <device name>	    //shows active logical volume with size
+lvdisplay <path of lv>	    //describes logical volume
+
+##making lv into file system
+mkfs.ext4 <lv> 		   //lvn can be found using lvscan
+mount <lv> <directory>     //mounting particular directory in lv
+umount <path of directory> //unmounting filesystem
+
+##disk usage
+df -h
+df -h | grep nginx  	    //finding nginx file in filesystem
+
+
+##schedulers for jobs two types
+at 1:45 -f /home/script.sh  //command at one particular time and date
+man cron		    //manual for cron
+crontab -l		    //checking any crontab
+crontab -e		    //edit mode of crontab
+*/2**** /path/to/script.sh  //minutes(0-59)\hour(0-23)\day of month(1-31)\month of year(1-12)\day of week(0-7) 
+			    //command/Script to execute evvery 2 minutes
+tail -f /var/log/cron 	    //realtime log output
+
+##softlink and hardlink
+ln -s nginx/ nginx_backup   //creates softlink shortcut of nginx folder if we remove original folder/file softlink is useless
+ln nginx/ nginx_backup      //creates hardlink has actual contents of original file even the original file is removed or moved
+
+
+ 
+
+
+
+
+
+   		

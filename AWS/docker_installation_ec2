@@ -1,0 +1,6 @@
+##docker installation on ec2 instance 
+amazon-linux-extras install epel      //initial command
+amazon-linux-extras install docker    //installation command
+service docker status		      //check docker status
+
+
